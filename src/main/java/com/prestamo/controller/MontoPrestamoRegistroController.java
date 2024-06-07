@@ -16,30 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prestamo.entity.MontoPrestamo;
 import com.prestamo.service.DataCatalogoService;
+import com.prestamo.service.MontoPrestamoService;
 import com.prestamo.util.AppSettings;
 
 @RestController
-@RequestMapping("/url/listaDiasPrestamo")
+@RequestMapping("/url/MontoPrestamo")
 @CrossOrigin(AppSettings.URL_CROSS_ORIGIN)
 public class MontoPrestamoRegistroController {
 
   @Autowired
   private DataCatalogoService dataCatalogoService;
   
-  /*@GetMapping
-	public ResponseEntity<List<MontoPrestamo>> lista(){
-		List<MontoPrestamo> lstSalida = dataCatalogoService.listaDataCatalogo();
-		return ResponseEntity.ok(lstSalida);
-	}*/
+
+  @Autowired
+  private MontoPrestamoService montoPrestamoService; 
   
-	/*@PostMapping
+  @GetMapping
+	public ResponseEntity<List<MontoPrestamo>> lista(){
+		List<MontoPrestamo> lstSalida = montoPrestamoService.listaMontoPrestamo();
+		return ResponseEntity.ok(lstSalida);
+	}
+  
+	@PostMapping
 	public ResponseEntity<?> registra(@RequestBody MontoPrestamo objMPrestamo){
 		HashMap<String, Object> salida = new HashMap<>();
 		objMPrestamo.setFechaRegistro(new Date());
 		objMPrestamo.setFechaActualizacion(new Date());
 		objMPrestamo.setEstado(AppSettings.ACTIVO);
 		
-		MontoPrestamo objSalida = dataCatalogoService.RegistrarMontoPrestamo(objMPrestamo);
+		MontoPrestamo objSalida = montoPrestamoService.registraMontoPrestamo(objMPrestamo);
 		if (objSalida == null) {
 			salida.put("mensaje", "Error en el registro");
 		}else {
@@ -49,5 +54,5 @@ public class MontoPrestamoRegistroController {
 										" MONTO A PAGAR : " + objMPrestamo.getMonto());
 		}
 		return ResponseEntity.ok(salida);
-	}*/
+	}
 }
