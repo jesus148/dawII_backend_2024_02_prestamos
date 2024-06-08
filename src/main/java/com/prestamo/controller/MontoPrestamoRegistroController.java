@@ -15,18 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prestamo.entity.MontoPrestamo;
-import com.prestamo.service.DataCatalogoService;
 import com.prestamo.service.MontoPrestamoService;
 import com.prestamo.util.AppSettings;
 
 @RestController
-@RequestMapping("/url/MontoPrestamo")
+@RequestMapping("/url/montoPrestamo")
 @CrossOrigin(AppSettings.URL_CROSS_ORIGIN)
 public class MontoPrestamoRegistroController {
-
-  @Autowired
-  private DataCatalogoService dataCatalogoService;
-  
 
   @Autowired
   private MontoPrestamoService montoPrestamoService; 
