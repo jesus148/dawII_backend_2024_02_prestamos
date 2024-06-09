@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,20 +40,22 @@ public ResponseEntity<List<Grupo>> lista(){
 
 @PostMapping
 public ResponseEntity<?> registra(@RequestBody Grupo objGrupo){
-	HashMap<String, Object> salida = new HashMap<>();
-	objGrupo.setFechaRegistro(new Date());
-	objGrupo.setFechaActualizacion(new Date());
-	objGrupo.setEstado(AppSettings.ACTIVO);
-	
-	Grupo objSalida = grupoService.insertaActualizaGrupo(objGrupo);
-	if(objSalida == null) {
-		salida.put("mensaje", "Error en el registro");
-	}else {
-		salida.put("mensaje", "Registro de ejemplo con el ID >>> " + objGrupo.getIdGrupo() +
-									">>> DES >> " + objGrupo.getDescripcion());	
-	}
-	return ResponseEntity.ok(salida);
+    HashMap<String, Object> salida = new HashMap<>();
+    objGrupo.setFechaRegistro(new Date());
+    objGrupo.setFechaActualizacion(new Date());
+    objGrupo.setEstado(AppSettings.ACTIVO);
+
+    try {
+        Grupo objSalida = grupoService.insertaActualizaGrupo(objGrupo);
+        salida.put("mensaje", "Registro de ejemplo con el ID >>> " + objSalida.getIdGrupo() +
+                                " >>> DES >>> " + objSalida.getDescripcion());
+        return ResponseEntity.ok(salida);
+    } catch (DataIntegrityViolationException e) {
+        salida.put("mensaje", "Error en el registro: Ya existe un grupo con el mismo Jefe de Prestamista");
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(salida);
+    }
 }
+
 
 @GetMapping("/validaDescripcionRegistra")
 public String validaDescripcion(@RequestParam(name = "descripcion")String descripcion) {
