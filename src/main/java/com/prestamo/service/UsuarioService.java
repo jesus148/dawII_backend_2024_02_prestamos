@@ -20,4 +20,9 @@ public interface UsuarioService {
 
 	public abstract List<Usuario> listaPrestamistariosDeUnPrestamista(int idUsuario);
 
+	public abstract Usuario registrarPrestatario(Usuario usuario);
+
+	Usuario findByLogin(String login);
+
+	Usuario findByDni(String dni);
 }

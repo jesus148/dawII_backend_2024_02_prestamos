@@ -10,13 +10,12 @@ import com.prestamo.entity.Rol;
 import com.prestamo.entity.Usuario;
 import com.prestamo.repository.UsuarioRepository;
 
-
 @Service
-public class UsuarioServiceImpl implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repository;
-	
+
 	@Override
 	public List<Opcion> traerEnlacesDeUsuario(int idUsuario) {
 		return repository.traerEnlacesDeUsuario(idUsuario);
@@ -45,6 +44,21 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public List<Usuario> listaPrestamistariosDeUnPrestamista(int idUsuario) {
 		return repository.listaPrestamistariosDeUnPrestamista(idUsuario);
+	}
+
+	@Override
+	public Usuario registrarPrestatario(Usuario usuario) {
+		return repository.save(usuario);
+	}
+
+	@Override
+	public Usuario findByLogin(String login) {
+		return repository.findByLogin(login);
+	}
+
+	@Override
+	public Usuario findByDni(String dni) {
+		return repository.findByDni(dni);
 	}
 
 }
