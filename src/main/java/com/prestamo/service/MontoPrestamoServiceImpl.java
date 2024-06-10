@@ -31,6 +31,19 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 
 	
 	
+	@Override
+	public List<MontoPrestamo> listaTodos(int idTipo) {
+			return repository.listaMontoPrestamo(idTipo);
+
+	}
+
+
+	@Override
+	public List<String> listaMonto(int id) {
+		
+		return repository.listaMonto(id);
+	}
+
 	
 
 }
