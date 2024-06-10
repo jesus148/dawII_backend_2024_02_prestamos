@@ -63,19 +63,29 @@ public class UtilController {
 	
 	
 	
-//	monto prestamo 
-	@GetMapping("/listaCapitalMonto")
-	@ResponseBody
-	public List<MontoPrestamo> montoCapital() {
-		return montoPrestamoService.listaTodos(AppSettings.ACTIVO);
-	}
+////	monto prestamo 
+//	@GetMapping("/listaCapitalMonto")
+//	@ResponseBody
+//	public List<MontoPrestamo> montoCapital() {
+//		return montoPrestamoService.listaTodos(AppSettings.ACTIVO);
+//	}
+//	
+//	
+//	@GetMapping("/listaMontoPrestamo/{paramMonto}")
+//	@ResponseBody
+//	public List<String> verMonto(@PathVariable("paramMonto") int id) {
+//		return montoPrestamoService.listaMonto(id);
+//	}
 	
 	
-	@GetMapping("/listaMontoPrestamo/{paramMonto}")
-	@ResponseBody
-	public List<String> verMonto(@PathVariable("paramMonto") int id) {
-		return montoPrestamoService.listaMonto(id);
-	}
+	
+	
+	
+	
+
+	
+	
+	
 	
 	
 	

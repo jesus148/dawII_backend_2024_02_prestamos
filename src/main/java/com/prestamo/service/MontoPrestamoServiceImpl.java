@@ -7,12 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.prestamo.entity.MontoPrestamo;
 import com.prestamo.repository.MontoPrestamoRepository;
+import com.prestamo.repository.MontoRepository;
 
 @Service
 public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 	
 	@Autowired
 	private MontoPrestamoRepository repository;
+	
+	
+	@Autowired
+	private MontoRepository repository1;
+	
 
 	@Override
 	public MontoPrestamo registraMontoPrestamo(MontoPrestamo obj) {
@@ -33,7 +39,7 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 	
 	@Override
 	public List<MontoPrestamo> listaTodos(int idTipo) {
-			return repository.listaMontoPrestamo(idTipo);
+			return repository1.listaMontoPrestamo(idTipo);
 
 	}
 
@@ -41,7 +47,7 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 	@Override
 	public List<String> listaMonto(int id) {
 		
-		return repository.listaMonto(id);
+		return repository1.listaMonto(id);
 	}
 
 	
