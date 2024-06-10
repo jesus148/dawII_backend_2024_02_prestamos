@@ -29,6 +29,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	@Query("Select r from Usuario r, UsuarioHasRol u where r.idUsuario = u.usuario.idUsuario and u.rol.idRol = 3 and r.usuarioSuperior.idUsuario =?1 order by r.apellidos desc ")
 	public abstract List<Usuario> listaPrestamistaDeUnJefe(int idUsuario);
 	
+//	obeteniedo segun el id enviado desde el front obtenemos su inferior de prestamista 7
 	@Query("Select r from Usuario r, UsuarioHasRol u where r.idUsuario = u.usuario.idUsuario and u.rol.idRol = 4 and r.usuarioSuperior.idUsuario =?1 order by r.apellidos desc ")
 	public abstract List<Usuario> listaPrestamistariosDeUnPrestamista(int idUsuario);
 	

@@ -57,9 +57,9 @@ public class Grupo {
 	@JoinColumn(name = "idUsuarioRegistro")
 	private Usuario usuarioRegistro;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idUsuarioActualiza")
+	@JoinColumn(name = "idUsuarioActualizacion")
 	private Usuario usuarioActualiza;
 	
 }
