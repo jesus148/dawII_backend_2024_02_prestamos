@@ -80,7 +80,17 @@ public class UtilController {
 	
 	
 	
+	@GetMapping("/listaCapitalesPorDias/{paramDias}")
+    @ResponseBody
+    public List<MontoPrestamo> listaCapitalesPorDias(@PathVariable("paramDias") int dias) {
+        return montoPrestamoService.findCapitalesByDias(dias);
+    }
 	
+	@GetMapping("/listaMontosPagarPorCapital/{paramCapital}")
+    @ResponseBody
+    public List<MontoPrestamo> listaMontosPagarPorCapital(@PathVariable("paramCapital") int capital) {
+        return montoPrestamoService.findMontosByCapital(capital);
+    }
 	
 
 	

@@ -18,7 +18,12 @@ public interface MontoRepository extends JpaRepository<MontoPrestamo, Integer>{
 
 	
 	
-
+	@Query(value = "SELECT * FROM monto_prestamo  WHERE dias = :dias", nativeQuery = true)
+    List<MontoPrestamo> findCapitalesByDias(@Param("dias") int dias);
+ 
+ 
+ @Query(value = "SELECT monto FROM MontoPrestamo monto WHERE monto.capital = :capital")
+    List<MontoPrestamo> findMontosByCapital(@Param("capital") int capital);
 	
 	
 	@Query("select distinct x.monto from MontoPrestamo x where x.idMontoPrestamo = :var_dep  order by 1 asc")

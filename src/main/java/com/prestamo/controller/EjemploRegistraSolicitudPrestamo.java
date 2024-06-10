@@ -38,11 +38,11 @@ public class EjemploRegistraSolicitudPrestamo {
 		objSolicitud.setFechaRegistro(new Date());
 		objSolicitud.setFechaActualizacion(new Date());
 		objSolicitud.setEstado(AppSettings.ACTIVO);
-		objSolicitud.setFechaFinPrestamo(new Date());
-		objSolicitud.setFechaInicioPrestamo(new Date());
+//		objSolicitud.setFechaFinPrestamo(new Date());
+//		objSolicitud.setFechaInicioPrestamo(new Date());
 		
 		
-		
+//		seteando la data estado por default
 		DataCatalogo Obdatacatalago= new DataCatalogo();
 		
 		Obdatacatalago.setIdDataCatalogo(12);

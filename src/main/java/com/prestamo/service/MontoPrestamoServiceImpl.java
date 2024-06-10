@@ -37,19 +37,55 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 
 	
 	
+//	@Override
+//	public List<MontoPrestamo> listaTodos(int idTipo) {
+//			return repository1.listaMontoPrestamo(idTipo);
+//
+//	}
+//
+//
+//	@Override
+//	public List<String> listaMonto(int id) {
+//		
+//		return repository1.listaMonto(id);
+//	}
+	
+	
+	
+	
+
 	@Override
-	public List<MontoPrestamo> listaTodos(int idTipo) {
-			return repository1.listaMontoPrestamo(idTipo);
+	public List<MontoPrestamo> findCapitalesByDias(int dias) {
 
-	}
-
-
-	@Override
-	public List<String> listaMonto(int id) {
+		return repository1.findCapitalesByDias(dias);
 		
-		return repository1.listaMonto(id);
 	}
 
+	@Override
+	public List<MontoPrestamo> findMontosByCapital(int capital) {
+
+		
+		return repository1.findMontosByCapital(capital);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
