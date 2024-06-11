@@ -7,12 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.prestamo.entity.MontoPrestamo;
 import com.prestamo.repository.MontoPrestamoRepository;
+import com.prestamo.repository.MontoRepository;
 
 @Service
 public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 	
 	@Autowired
 	private MontoPrestamoRepository repository;
+	
+	
+	@Autowired
+	private MontoRepository repository1;
+	
 
 	@Override
 	public MontoPrestamo registraMontoPrestamo(MontoPrestamo obj) {
@@ -29,6 +35,55 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 		return repository.listaMontoPrestamoPorCapital(capital);
 	}
 
+	
+	
+//	@Override
+//	public List<MontoPrestamo> listaTodos(int idTipo) {
+//			return repository1.listaMontoPrestamo(idTipo);
+//
+//	}
+//
+//
+//	@Override
+//	public List<String> listaMonto(int id) {
+//		
+//		return repository1.listaMonto(id);
+//	}
+	
+	
+	
+	
+
+	@Override
+	public List<MontoPrestamo> findCapitalesByDias(int dias) {
+
+		return repository1.findCapitalesByDias(dias);
+		
+	}
+
+	@Override
+	public List<MontoPrestamo> findMontosByCapital(int capital) {
+
+		
+		return repository1.findMontosByCapital(capital);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prestamo.entity.DataCatalogo;
+import com.prestamo.entity.MontoPrestamo;
 import com.prestamo.entity.Pais;
 import com.prestamo.entity.Ubigeo;
 import com.prestamo.entity.Usuario;
 import com.prestamo.service.DataCatalogoService;
+import com.prestamo.service.MontoPrestamoService;
 import com.prestamo.service.PaisService;
 import com.prestamo.service.UbigeoService;
 import com.prestamo.service.UsuarioService;
@@ -37,6 +39,9 @@ public class UtilController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private MontoPrestamoService montoPrestamoService;
+	
 
 	@GetMapping("/listaPais")
 	@ResponseBody
@@ -56,6 +61,48 @@ public class UtilController {
 		return dataCatalogoService.listaDataCatalogo(AppSettings.CATALOGO_02_TIPO_DE_MONEDA);
 	}
 	
+	
+	
+////	monto prestamo 
+//	@GetMapping("/listaCapitalMonto")
+//	@ResponseBody
+//	public List<MontoPrestamo> montoCapital() {
+//		return montoPrestamoService.listaTodos(AppSettings.ACTIVO);
+//	}
+//	
+//	
+//	@GetMapping("/listaMontoPrestamo/{paramMonto}")
+//	@ResponseBody
+//	public List<String> verMonto(@PathVariable("paramMonto") int id) {
+//		return montoPrestamoService.listaMonto(id);
+//	}
+	
+	
+	
+	
+	@GetMapping("/listaCapitalesPorDias/{paramDias}")
+    @ResponseBody
+    public List<MontoPrestamo> listaCapitalesPorDias(@PathVariable("paramDias") int dias) {
+        return montoPrestamoService.findCapitalesByDias(dias);
+    }
+	
+	@GetMapping("/listaMontosPagarPorCapital/{paramCapital}")
+    @ResponseBody
+    public List<MontoPrestamo> listaMontosPagarPorCapital(@PathVariable("paramCapital") int capital) {
+        return montoPrestamoService.findMontosByCapital(capital);
+    }
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	DIAS COMBO 
 	@GetMapping("/listaDiasPrestamo")
 	@ResponseBody
 	public List<DataCatalogo> listaDiasPrestamo() {
