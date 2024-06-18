@@ -28,5 +28,20 @@ public class EjemploServiceImp implements EjemploService {
 	public List<Ejemplo> listaEjemploPorDescripcionIgual(String descripcion) {
 		return repository.listaEjemploPorDescripcionIgual(descripcion);
 	}
+
+	@Override
+	public List<Ejemplo> listaEjemploPorDescripcionLike(String nombre) {
+		return repository.listaEjemploPorDescripcionLike(nombre);
+	}
+
+	@Override
+	public void eliminaEjemplo(int idRevista) {
+		repository.deleteById(idRevista);
+	}
+
+	@Override
+	public List<Ejemplo> listaEjemploPorDescripcionIgualActualiza(String descripcion, int idEjemplo) {
+		return repository.listaEjemploPorDescripcionIgualActualiza(descripcion, idEjemplo);
+	}
 	
 }

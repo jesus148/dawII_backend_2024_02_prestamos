@@ -63,6 +63,13 @@ public class RegistroPrestatarioController {
         objDatosPrestatario.setIdUsuario(0);
         Usuario objSalida = usuarioService.registrarPrestatario(objDatosPrestatario);
 
+        if (objSalida == null) {
+            salida.put("msg", "Error de registro zz");
+        } else {
+            salida.put("msg", "Se registro el prestatario ID: " + objDatosPrestatario.getIdUsuario() +
+                    " Nombres: " + objDatosPrestatario.getNombreCompleto());
+        }
+        
         UsuarioHasRolPK obHasRolPK = new UsuarioHasRolPK();
         obHasRolPK.setIdRol(4);
         obHasRolPK.setIdUsuario(objSalida.getIdUsuario());
@@ -70,12 +77,7 @@ public class RegistroPrestatarioController {
         objHasRol.setUsuarioHasRolPk(obHasRolPK);
         prestatarioRepository.save(objHasRol);
 
-        if (objSalida == null) {
-            salida.put("msg", "Error de registro zz");
-        } else {
-            salida.put("msg", "Se registro el prestatario ID: " + objDatosPrestatario.getIdUsuario() +
-                    " Nombres: " + objDatosPrestatario.getNombreCompleto());
-        }
+        
         return ResponseEntity.ok(salida);
     }
 }
