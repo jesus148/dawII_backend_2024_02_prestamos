@@ -28,5 +28,17 @@ public class GrupoServicelmp implements GrupoService{
 	public List<Grupo> listaGrupoPorDescripcionIgual(String descripcion) {
 		return repository.listaGrupoPorDescripcionIgual(descripcion);
 	}
+
+	@Override
+	public List<Grupo> listaGrupoPorDescripcionLike(String descripcion) {
+		
+		return repository.listaGrupoPorDescripcionLike(descripcion);
+	}
+
+	@Override
+	public void eliminaGrupo(int idGrupo) {
+		repository.deleteById(idGrupo);
+		
+	}
 	
 }
