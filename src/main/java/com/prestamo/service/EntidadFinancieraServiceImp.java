@@ -36,6 +36,23 @@ public class EntidadFinancieraServiceImp implements EntidadFinancieraService {
 	public List<EntidadFinanciera> listarEntidadPorTipo(int idTipo) {
 		return repository.listaEntidadPorTipo(idTipo);
 	}
+
+	@Override
+	public List<EntidadFinanciera> listaEntidadFinancieraPorDescripcionIgualActualiza(String nombre,
+			int idEntidadFinanciera) {
+		return repository.listaEntidadFinancieraPorDescripcionIgualActualiza(nombre, idEntidadFinanciera);
+	}
+
+	@Override
+	public List<EntidadFinanciera> listaEntidadFinancieraPorDescripcionLike(String nombre) {
+		return repository.listaEntidadFinancieraPorDescripcionLike(nombre);
+	}
+
+	@Override
+	public void eliminaEntidadFinanciera(int idRevista) {
+		repository.deleteById(idRevista);
+		
+	}
 	
 	
 }
