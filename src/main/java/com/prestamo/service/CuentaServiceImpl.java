@@ -23,6 +23,22 @@ public class CuentaServiceImpl implements CuentaService{
 	public List<Cuenta> validanumerodecuenta(String numero) {
 		return repository.validanumerodecuenta(numero);
 	}
+
+	@Override
+	public List<Cuenta> listaCuentaPorNumeroLike(String numero) {
+		return repository.listaCuentaPorNumeroLike(numero);
+	}
+
+	@Override
+	public void eliminaCuenta(int idCuenta) {
+		repository.deleteById(idCuenta);
+	}
+
+	@Override
+	public List<Cuenta> listaCuenta() {
+		
+		return repository.findAll();
+	}
 	
 	
 }
