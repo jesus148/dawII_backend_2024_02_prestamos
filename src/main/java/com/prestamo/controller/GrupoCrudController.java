@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.prestamo.entity.Ejemplo;
 import com.prestamo.entity.Grupo;
 import com.prestamo.service.GrupoService;
 import com.prestamo.util.AppSettings;
@@ -76,7 +78,7 @@ public class GrupoCrudController {
 		try {
 			
 			objGrupo.setFechaActualizacion(new Date());
-			objGrupo.setUsuarioActualiza(null);
+			
 			
 			Grupo objSalida = grupoService.insertaActualizaGrupo(objGrupo);
 			if (objSalida == null) {
@@ -106,7 +108,17 @@ public class GrupoCrudController {
 	}
 	
 	
-	
+	@GetMapping("/validaDescripcionActualiza")
+	public String validaDescripcion(@RequestParam(name = "descripcion")String descripcion,
+									@RequestParam(name = "idGrupo")int idGrupo) {
+		 List<Grupo> lstSalida =grupoService.listaGrupoPorDescripcionIgualActualiza(descripcion, idGrupo);
+		 if (lstSalida.isEmpty()) {
+			 return "{\"valid\":true}";
+		 }else {
+			 return "{\"valid\":false}";
+		 }
+			
+	}
 	
 	
 	
