@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.prestamo.entity.Ejemplo;
 import com.prestamo.entity.Grupo;
 import com.prestamo.repository.GrupoRepository;
 
@@ -40,5 +41,8 @@ public class GrupoServicelmp implements GrupoService{
 		repository.deleteById(idGrupo);
 		
 	}
-	
+	@Override
+	public List<Grupo> listaGrupoPorDescripcionIgualActualiza(String descripcion, int idEjemplo) {
+		return repository.listaGrupoPorDescripcionIgualActualiza(descripcion, idEjemplo);
+	}
 }
