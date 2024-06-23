@@ -35,6 +35,20 @@ public class MontoPrestamoCrudController {
 	  
 	  
 	  
+//	  METODO VALIDA AL REGISTRAR 
+		@GetMapping("/validaMontoPorCapital")
+		public String validaDescripcion(@RequestParam(name = "capital")String capital) {
+			 List<MontoPrestamo> lstSalida =montoPrestamoService.listaMontoPrestamoPorCapital(capital);
+			 if (lstSalida.isEmpty()) {
+				 return "{\"valid\":true}";
+			 }else {
+				 return "{\"valid\":false}";
+			 }
+				
+		}
+	  
+	  
+	  
 //	  METODO LSITAR POR PARAMETRO 
 		@GetMapping("/listaMontoPorCapitalLike/{var}")
 		@ResponseBody
