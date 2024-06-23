@@ -13,7 +13,7 @@ public interface SolicitudPrestamoService {
 	
 	//Para el crud
 		public abstract SolicitudPrestamo insertaActualizaSolicitud(SolicitudPrestamo obj);
-	    public abstract List<SolicitudPrestamo> listaSolicitudPrestamoPorCapital(String capital);
+	    public abstract List<SolicitudPrestamo> listaSolicitudPrestamoPorCapital(String idSolicitud);
 		public abstract void eliminaSolicitud(int idSolicitud);
 		public abstract List<SolicitudPrestamo> listaSolicitud();
 

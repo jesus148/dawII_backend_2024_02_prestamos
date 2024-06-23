@@ -35,12 +35,12 @@ public class SolicitudPrestamoCrudController {
 	
 	@GetMapping("/listaSolicitudPorCapital/{var}")
 	@ResponseBody
-	public ResponseEntity<?> listaSolicitudPorCapitalLike(@PathVariable("var") String capital){
+	public ResponseEntity<?> listaSolicitudPorCapitalLike(@PathVariable("var") String idSolicitud){
 		List<SolicitudPrestamo> lstSalida = null;
-		if (capital.equals("todos")) {
+		if (idSolicitud.equals("todos")) {
 			lstSalida =solicitudService.listaSolicitud();
 		}else {
-			lstSalida =solicitudService.listaSolicitudPrestamoPorCapital(capital +  "%");
+			lstSalida =solicitudService.listaSolicitudPrestamoPorCapital(idSolicitud +  "%");
 		}
 		return ResponseEntity.ok(lstSalida);
 	}
