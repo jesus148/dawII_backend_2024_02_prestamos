@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prestamo.entity.Ejemplo;
+
 import com.prestamo.entity.Grupo;
 import com.prestamo.service.GrupoService;
 import com.prestamo.util.AppSettings;
