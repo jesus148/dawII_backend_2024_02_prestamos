@@ -12,6 +12,8 @@ import com.prestamo.repository.MontoRepository;
 @Service
 public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 	
+	
+	
 	@Autowired
 	private MontoPrestamoRepository repository;
 	
@@ -25,10 +27,7 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 		return repository.save(obj);
 	}
 
-	@Override
-	public List<MontoPrestamo> listaMontoPrestamo() {
-		return repository.findAll();
-	}
+
 
 	@Override
 	public List<MontoPrestamo> listaMontoPrestamoPorCapital(String capital) {
@@ -37,19 +36,7 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 
 	
 	
-//	@Override
-//	public List<MontoPrestamo> listaTodos(int idTipo) {
-//			return repository1.listaMontoPrestamo(idTipo);
-//
-//	}
-//
-//
-//	@Override
-//	public List<String> listaMonto(int id) {
-//		
-//		return repository1.listaMonto(id);
-//	}
-	
+
 	
 	
 	
@@ -68,6 +55,12 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 		return repository1.findMontosByCapital(capital);
 	}
 
+
+
+
+
+
+
 	
 	
 	
@@ -75,10 +68,37 @@ public class MontoPrestamoServiceImpl implements MontoPrestamoService{
 	
 	
 	
+//	Crud
 	
 	
+	@Override
+	public MontoPrestamo insertaActualizaMonto(MontoPrestamo obj) {
+		return repository.save(obj); 
+	}
+
+	
+	@Override
+	public List<MontoPrestamo> listaMontoPorDescripcionLike(String capital) {
+		return repository.listaMontoPorDescripcionLike(capital);
+	}
 	
 	
+	@Override
+	public void eliminaMonto(int idMontoPrestamo) {
+		repository.deleteById(idMontoPrestamo);
+		
+	}
+
+	@Override
+	public List<MontoPrestamo> listaMontoPorCapitalIgualActualiza(String capital, int idMontoPrestamo) {
+		return repository.listaMontoPorCapitalIgualActualiza(capital, idMontoPrestamo);
+	}
+	
+	
+	@Override
+	public List<MontoPrestamo> listaMontoPrestamo() {
+		return repository.findAll();
+	}
 	
 	
 	
