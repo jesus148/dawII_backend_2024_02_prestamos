@@ -3,6 +3,7 @@ package com.prestamo.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -59,15 +60,13 @@ public class CuentaController {
 	public List<EntidadFinanciera> listaEntidadPorTipo(@PathVariable("id")int id) {
 		return entidadFinancieraService.listarEntidadPorTipo(id);
 	}
+	
 	@GetMapping("/validaNumeroCuenta")
-	public String validaNumero(@RequestParam(name = "numero")String numero) {
-		 List<Cuenta> lstSalida =cuentaService.validanumerodecuenta(numero);
-		 if (lstSalida.isEmpty()) {
-			 return "{\"valid\":true}";
-		 }else {
-			 return "{\"valid\":false}";
-		 }
-			
+	public ResponseEntity<Map<String, Boolean>> validaNumero(@RequestParam(name = "numero") String numero) {
+	    List<Cuenta> lstSalida = cuentaService.listaCuentaPorNumeroIgual(numero);
+	    Map<String, Boolean> respuesta = new HashMap<>();
+	    respuesta.put("valid", lstSalida.isEmpty());
+	    return ResponseEntity.ok(respuesta);
 	}
 	
 }

@@ -20,9 +20,35 @@ public class CuentaServiceImpl implements CuentaService{
 	}
 
 	@Override
-	public List<Cuenta> validanumerodecuenta(String numero) {
-		return repository.validanumerodecuenta(numero);
+	public List<Cuenta> validanumerodecuentaActualiza(String numero, int idCuenta) {
+		
+		return repository.validanumerodecuentaActualiza(numero, idCuenta);
 	}
+
+	@Override
+	public List<Cuenta> listaCuentaPorNumeroLike(String numero) {
+		// TODO Auto-generated method stub
+		return repository.listaCuentaPorNumeroLike(numero);
+	}
+
+	@Override
+	public void eliminaCuenta(int idCuenta) {
+		// TODO Auto-generated method stub
+		repository.deleteById(idCuenta);
+	}
+
+	@Override
+	public List<Cuenta> listaCuenta() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
+	}
+
+	@Override
+	public List<Cuenta> listaCuentaPorNumeroIgual(String numero) {
+		// TODO Auto-generated method stub
+		return repository.listaCuentaPorNumeroIgual(numero);
+	}
+
 	
-	
+
 }
