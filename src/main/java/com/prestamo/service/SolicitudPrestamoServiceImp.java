@@ -20,14 +20,14 @@ public class SolicitudPrestamoServiceImp implements SolicitudPrestamoService {
 
 	@Override
 	public SolicitudPrestamo insertaSolicitudPrestamo(SolicitudPrestamo obj) {
+
 		return repository.save(obj);
 
 	}
 
 	@Override
 	public SolicitudPrestamo insertaActualizaSolicitud(SolicitudPrestamo obj) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.save(obj);
 	}
 	
 	@Override
@@ -42,8 +42,8 @@ public class SolicitudPrestamoServiceImp implements SolicitudPrestamoService {
 	}
 
 	@Override
-	public List<SolicitudPrestamo> listaSolicitudPrestamoPorCapital(String capital) {
-		return repository.listaSolicitudPrestamoPorCapital(capital);
+	public List<SolicitudPrestamo> listaSolicitudPrestamoPorCapital(String idSolicitud) {
+		return repository.listaSolicitudPrestamoPorCapital(idSolicitud);
 	}
 
 
