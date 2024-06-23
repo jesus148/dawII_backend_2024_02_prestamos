@@ -22,5 +22,6 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
 	public abstract List<Cuenta> validanumerodecuentaActualiza(String numero, int idCuenta);
 
 	Cuenta findByNumero(String numero);
+
 	
 }

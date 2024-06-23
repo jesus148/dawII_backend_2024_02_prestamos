@@ -19,47 +19,49 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.prestamo.entity.SolicitudPrestamo;
-import com.prestamo.service.SolicitudPrestamoService;
+import com.prestamo.entity.Ejemplo;
+import com.prestamo.entity.Grupo;
+import com.prestamo.service.GrupoService;
 import com.prestamo.util.AppSettings;
 
 @RestController
-@RequestMapping("/url/crudSolicitud")
+@RequestMapping("/url/crudGrupo")
 @CrossOrigin(AppSettings.URL_CROSS_ORIGIN)
-public class SolicitudPrestamoCrudController {
+public class GrupoCrudController {
 
+	
 	@Autowired
-	private SolicitudPrestamoService  solicitudService;
+	private GrupoService grupoService;
 	
 	
-	@GetMapping("/listaSolicitudPorCapital/{var}")
+	@GetMapping("/listaGrupoPorDescripcionLike/{var}")
 	@ResponseBody
-	public ResponseEntity<?> listaSolicitudPorCapitalLike(@PathVariable("var") String idSolicitud){
-		List<SolicitudPrestamo> lstSalida = null;
-		if (idSolicitud.equals("todos")) {
-			lstSalida =solicitudService.listaSolicitud();
+	public ResponseEntity<?> listaGrupoPorDescripcionLike(@PathVariable("var") String descripcion){
+		List<Grupo> lstSalida = null;
+		if (descripcion.equals("todos")) {
+			lstSalida =grupoService.listaGrupo();
 		}else {
-			lstSalida =solicitudService.listaSolicitudPrestamoPorCapital(idSolicitud +  "%");
+			lstSalida =grupoService.listaGrupoPorDescripcionLike(descripcion +  "%");
 		}
 		return ResponseEntity.ok(lstSalida);
 	}
 	
-	@PostMapping("/registraSolicitud")
+	@PostMapping("/registraGrupo")
 	@ResponseBody
-	public ResponseEntity<?> insertaSolicitud(@RequestBody SolicitudPrestamo obj) {
+	public ResponseEntity<?> insertaGrupo(@RequestBody Grupo objGrupo) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			obj.setIdSolicitud(0);
-			obj.setFechaActualizacion(new Date());
-			obj.setFechaRegistro(new Date());
-			obj.setEstado(AppSettings.ACTIVO);
+			objGrupo.setIdGrupo(0);
+			objGrupo.setFechaActualizacion(new Date());
+			objGrupo.setFechaRegistro(new Date());
+			objGrupo.setEstado(AppSettings.ACTIVO);
 			
-			SolicitudPrestamo objSalida = solicitudService.insertaActualizaSolicitud(obj);
+			
+			Grupo objSalida = grupoService.insertaActualizaGrupo(objGrupo);
 			if (objSalida == null) {
 				salida.put("mensaje", AppSettings.MENSAJE_REG_ERROR);
 			} else {
-				salida.put("mensaje", AppSettings.MENSAJE_REG_EXITOSO + " Solicitud de ID ==> " + obj.getIdSolicitud() + ".");
+				salida.put("mensaje", AppSettings.MENSAJE_REG_EXITOSO + " ID de Grupo ==> " + objGrupo.getIdGrupo() + ".");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,20 +69,22 @@ public class SolicitudPrestamoCrudController {
 		}
 		return ResponseEntity.ok(salida);
 	}
-
-	@PutMapping("/actualizaSolicitud")
+	
+	
+	@PutMapping("/actualizaGrupo")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> actualizaSolicitud(@RequestBody SolicitudPrestamo obj) {
+	public ResponseEntity<Map<String, Object>> actualizaGrupo(@RequestBody Grupo objGrupo) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
 			
-			obj.setFechaActualizacion(new Date());
-
-			SolicitudPrestamo objSalida = solicitudService.insertaActualizaSolicitud(obj);
+			objGrupo.setFechaActualizacion(new Date());
+			
+			
+			Grupo objSalida = grupoService.insertaActualizaGrupo(objGrupo);
 			if (objSalida == null) {
 				salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
 			} else {
-				salida.put("mensaje", AppSettings.MENSAJE_ACT_EXITOSO + " Solicitud de ID ==> " + obj.getIdSolicitud() + ".");
+				salida.put("mensaje", AppSettings.MENSAJE_ACT_EXITOSO + " ID de Grupo ==> " + objGrupo.getIdGrupo() + ".");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,14 +93,13 @@ public class SolicitudPrestamoCrudController {
 		return ResponseEntity.ok(salida);
 	}
 	
-	
-	@DeleteMapping("/eliminaSolicitud/{id}")
+	@DeleteMapping("/eliminaGrupo/{id}")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> eliminaSolicitud(@PathVariable("id") int idSolicitud) {
+	public ResponseEntity<Map<String, Object>> eliminaEjemplo(@PathVariable("id") int idGrupo) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			solicitudService.eliminaSolicitud(idSolicitud);
-			salida.put("mensaje", AppSettings.MENSAJE_ELI_EXITOSO + " Solicitud de ID ==> " + idSolicitud + "." );
+			grupoService.eliminaGrupo(idGrupo);
+			salida.put("mensaje", AppSettings.MENSAJE_ELI_EXITOSO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			salida.put("mensaje", AppSettings.MENSAJE_ELI_ERROR);
@@ -104,17 +107,19 @@ public class SolicitudPrestamoCrudController {
 		return ResponseEntity.ok(salida);
 	}
 	
-	/*@GetMapping("/validaDescripcionActualiza")
+	
+	@GetMapping("/validaDescripcionActualiza")
 	public String validaDescripcion(@RequestParam(name = "descripcion")String descripcion,
-									@RequestParam(name = "idSolicitud")int idSolicitud) {
-		 List<SolicitudPrestamo> lstSalida = SolicitudService.listaSolicitudPorDescripcionIgualActualiza(descripcion, idSolicitud);
+									@RequestParam(name = "idGrupo")int idGrupo) {
+		 List<Grupo> lstSalida =grupoService.listaGrupoPorDescripcionIgualActualiza(descripcion, idGrupo);
 		 if (lstSalida.isEmpty()) {
 			 return "{\"valid\":true}";
 		 }else {
 			 return "{\"valid\":false}";
 		 }
 			
-	}*/
+	}
+	
 	
 	
 }

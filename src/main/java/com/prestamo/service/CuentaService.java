@@ -6,6 +6,7 @@ import com.prestamo.entity.Cuenta;
 import com.prestamo.entity.Ejemplo;
 
 public interface CuentaService {
+
 	//para validacion
 	public abstract List<Cuenta> listaCuentaPorNumeroIgual(String numero);
 	public abstract List<Cuenta> validanumerodecuentaActualiza(String numero, int idCuenta);
@@ -16,4 +17,11 @@ public interface CuentaService {
 	public abstract void eliminaCuenta(int idCuenta);
 	public abstract List<Cuenta> listaCuenta();
 	//public abstract Cuenta obtenerCuentaPorNumero(String numero);
+
+	//PC1
+	public abstract Cuenta insertaActualizaCuenta(Cuenta obj);
+	public abstract List<Cuenta> validanumerodecuenta(String numero);
+
+	
+
 }

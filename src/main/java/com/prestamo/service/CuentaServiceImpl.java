@@ -49,6 +49,4 @@ public class CuentaServiceImpl implements CuentaService{
 		return repository.listaCuentaPorNumeroIgual(numero);
 	}
 
-	
-
 }
