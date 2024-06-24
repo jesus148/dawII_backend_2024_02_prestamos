@@ -61,4 +61,33 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return repository.findByDni(dni);
 	}
 
+	@Override
+	public List<Usuario> listaUsuariosPrestatarios() {
+		return repository.listaUsuariosPrestatarios();
+	}
+
+	@Override
+	public List<Usuario> listaUsuariosPrestatariosXDNI(String dni) {
+		return repository.listaUsuariosPrestatariosXDNI("%" + dni + "%");
+	}
+
+	@Override
+	public void eliminaPrestatario(int idPrestatario) {
+		repository.deleteById(idPrestatario);
+	}
+
+	@Override
+	public Usuario buscarPorID(int id) {
+		return repository.findById(id).get();
+	}
+
+	@Override
+	public List<Usuario> listaPrestatarioPorLoginIgualActualiza(String dni, int idUsuario) {
+		return repository.listaUsuarioPorLoginIgualActualiza(dni, idUsuario);
+	}
+
+	@Override
+	public List<Usuario> listaPrestatarioPorDniIgualActualiza(String dni, int idUsuario) {
+		return repository.listaUsuarioPorDniIgualActualiza(dni, idUsuario);
+	}
 }

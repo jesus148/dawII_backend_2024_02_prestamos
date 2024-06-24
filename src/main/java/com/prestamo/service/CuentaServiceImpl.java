@@ -49,4 +49,10 @@ public class CuentaServiceImpl implements CuentaService{
 		return repository.listaCuentaPorNumeroIgual(numero);
 	}
 
+	@Override
+	public List<Cuenta> validanumerodecuenta(String numero) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'validanumerodecuenta'");
+	}
+
 }

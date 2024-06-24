@@ -3,7 +3,6 @@ package com.prestamo.service;
 import java.util.List;
 
 import com.prestamo.entity.Cuenta;
-import com.prestamo.entity.Ejemplo;
 
 public interface CuentaService {
 
@@ -19,7 +18,7 @@ public interface CuentaService {
 	//public abstract Cuenta obtenerCuentaPorNumero(String numero);
 
 	//PC1
-	public abstract Cuenta insertaActualizaCuenta(Cuenta obj);
+	// abstract Cuenta insertaActualizaCuenta(Cuenta obj);
 	public abstract List<Cuenta> validanumerodecuenta(String numero);
 
 	
