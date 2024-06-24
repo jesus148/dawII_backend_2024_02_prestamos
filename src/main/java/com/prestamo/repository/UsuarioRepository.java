@@ -33,4 +33,16 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	public abstract List<Usuario> listaPrestamistariosDeUnPrestamista(int idUsuario);
 
 	public abstract Usuario findByDni(String dni);
+
+	@Query("SELECT u.usuario FROM UsuarioHasRol u WHERE u.rol.idRol = 4")
+	public abstract List<Usuario> listaUsuariosPrestatarios();
+
+	@Query("SELECT u.usuario FROM  UsuarioHasRol u WHERE u.rol.idRol = 4 and u.usuario.dni like ?1 ")
+	public abstract List<Usuario> listaUsuariosPrestatariosXDNI(String dni);
+
+	@Query("select e from Usuario e where e.dni = ?1 and e.idUsuario != ?2 ")
+	public abstract List<Usuario> listaUsuarioPorDniIgualActualiza(String dni, int idUsuario);
+
+	@Query("select e from Usuario e where e.login = ?1 and e.idUsuario != ?2 ")
+	public abstract List<Usuario> listaUsuarioPorLoginIgualActualiza(String login, int idUsuario);
 }

@@ -25,4 +25,16 @@ public interface UsuarioService {
 	Usuario findByLogin(String login);
 
 	Usuario findByDni(String dni);
+
+	Usuario buscarPorID(int id);
+
+	List<Usuario> listaUsuariosPrestatarios();
+
+	List<Usuario> listaUsuariosPrestatariosXDNI(String dni);
+
+	public abstract void eliminaPrestatario(int idRevista);
+
+	List<Usuario> listaPrestatarioPorDniIgualActualiza(String dni, int idUsuario);
+
+	List<Usuario> listaPrestatarioPorLoginIgualActualiza(String dni, int idUsuario);
 }
